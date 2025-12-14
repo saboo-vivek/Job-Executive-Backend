@@ -31,17 +31,21 @@ setupSwagger(app);
 
 connectDB();
 
-app.use("/auth", authRoutes);
-app.use("/job", jobRoutes);
-app.use("/applications", appRoutes);
-app.use("/admin", adminRoutes);
-app.use("/blogs", blogRoutes);
-app.use("/ai", aiRoutes);
-app.get("/", (req, res) => res.send("Job Executive API running ✅"));
+app.use("/api/auth", authRoutes);
+app.use("/api/job", jobRoutes);
+app.use("/api/applications", appRoutes);
+app.use("/api/admin", adminRoutes);
+app.use("/api/blogs", blogRoutes);
+app.use("/api/ai", aiRoutes);
+app.get("/api/", (req, res) => res.send("Job Executive API running ✅"));
 
-const PORT = process.env.PORT || 4000;
-app.listen(PORT, () =>
-  console.log(`🚀 Server running on http://localhost:${PORT}`)
-);
+// const PORT = process.env.PORT || 4000;
+// app.listen(PORT, () =>
+//   console.log(`🚀 Server running on http://localhost:${PORT}`)
+// );
+
+app.get("/api/health", (req, res) => {
+  res.json({ status: "OK" });
+});
 
 module.exports = app;
